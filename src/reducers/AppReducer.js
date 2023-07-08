@@ -1,3 +1,5 @@
+import { FindAverageOf } from "../utils/FindAverageOf";
+
 const appInitialState = {
   cuisineData: [
     { id: 1, name: "Italian", reviews: [], averageRating: 4 },
@@ -367,14 +369,34 @@ const AppReducer = (state, { type, payload }) => {
       return { ...state, users: payload };
     case "SELECT_CUISINE":
       return { ...state, selectedCuisine: payload };
+    case "ADD_RATING":
+      const _newRating = {
+        rating: payload?.rating,
+        comment: payload?.comment,
+        revName: "Garry",
+        pp: "https://source.boringavatars.com/beam/120/Nellie%20Bly?colors=184848,006060,007878,a8c030,f0f0d8",
+      };
+
+      const _addRating = state?.restaurantsData.map((item, i) => {
+        const { ratings, averageRating } = item;
+        return payload?.restId === item?.id
+          ? {
+              ...item,
+              ratings: [...ratings, _newRating],
+              averageRating: FindAverageOf([...ratings, _newRating].map(ele => ele?.rating)),
+            }
+          : item;
+      });
+
+      return { ...state, restaurantsData: _addRating };
     default:
       throw new Error("Not a reducer function");
   }
 };
 
 const SELECT_CUISINE = "SELECT_CUISINE";
-const TEST = "TEST";
+const ADD_RATING = "ADD_RATING";
 
-export { appInitialState, SELECT_CUISINE };
+export { appInitialState, SELECT_CUISINE, ADD_RATING };
 
 export default AppReducer;
