@@ -14,7 +14,7 @@ export default function Home() {
   return (
     <div className="text-center">
       <h1>Review Restaurants App</h1>
-      <div className="col-4 flex justify-content-between m-auto">
+      <div className="col-12 lg:col-4 md:col-8 flex justify-content-between m-auto">
         {cuisineData?.map((cuisine) => {
           const { name } = cuisine;
           return (

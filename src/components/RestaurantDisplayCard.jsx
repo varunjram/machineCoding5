@@ -2,17 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 const RestaurantDisplayCard = ({ restaurant }) => {
-  const {
-    id,
-    name: restaurantName,
-    cuisine_id,
-    address,
-    phone,
-    menu,
-    description,
-    averageRating,
-    ratings,
-  } = restaurant || {};
+  const { id, name: restaurantName, menu } = restaurant || {};
 
   const Navigation = useNavigate();
   return (
@@ -27,7 +17,7 @@ const RestaurantDisplayCard = ({ restaurant }) => {
           const { name, imgSrc, price, qty } = item || {};
           return (
             <article
-              className="w-16rem p-0 overflow-hidden border-round-lg cursor-pointer   "
+              className="w-16rem p-0 overflow-hidden border-round-lg cursor-pointer mb-3"
               style={{
                 boxShadow:
                   "rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px",

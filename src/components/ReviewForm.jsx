@@ -29,14 +29,14 @@ const ReviewForm = ({ visible, setVisible, restId }) => {
       <Dialog
         header="Add Review"
         visible={visible}
-        className="col-4"
+        className="col-10 lg:col-4"
         onHide={() => setVisible(false)}
         footer={
           <Button
             label="Submit"
             onClick={() => {
               const isFormEmpty = formData?.rating && formData?.comment.trim();
-            
+
               if (!isFormEmpty) {
                 tost.current.show({
                   severity: "warn",
@@ -57,8 +57,11 @@ const ReviewForm = ({ visible, setVisible, restId }) => {
         }>
         <form className="form-grid grid ">
           <div className="col-12 flex justify-content-between align-content-center text-xl ">
-            <label htmlFor="rating">Rating :</label>
-            <br />
+            <label
+              htmlFor="rating"
+              className="align-self-center">
+              Rating:
+            </label>
             <Dropdown
               id="rating"
               value={formData?.rating}

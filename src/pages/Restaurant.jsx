@@ -28,7 +28,7 @@ const Restaurant = () => {
       <Button
         icon="bi bi-arrow-left"
         text
-        className="text-5xl absolute top-0 ml-3"
+        className="text-5xl absolute top-0 lg:ml-3"
         onClick={() => Navigate("/")}
       />
       <div className="col-9 m-auto">
@@ -37,7 +37,7 @@ const Restaurant = () => {
           setVisible={setVisible}
           restId={id}
         />
-        <section className="flex justify-content-between">
+        <section className=" sm:block lg:flex justify-content-between">
           <div>
             <h1 className="m-0 mb-2">
               {restaurantName} <span className="text-sm text-color-secondary">{description}</span>
