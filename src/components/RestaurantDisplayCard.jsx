@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const RestaurantDisplayCard = ({ restaurant }) => {
   const {
@@ -12,9 +13,15 @@ const RestaurantDisplayCard = ({ restaurant }) => {
     averageRating,
     ratings,
   } = restaurant || {};
+
+  const Navigation = useNavigate();
   return (
     <div className="col-10 m-auto ">
-      <h1 className="text-left">Dishes by {restaurantName} </h1>
+      <h1
+        className="text-left"
+        onClick={() => Navigation("")}>
+        Dishes by {restaurantName}{" "}
+      </h1>
       <section className="grid justify-content-around">
         {menu?.map((item, i) => {
           const { name, imgSrc, price, qty } = item || {};
