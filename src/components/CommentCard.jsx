@@ -18,7 +18,7 @@ const CommentCard = ({ review }) => {
           <h4 className="m-0 align-self-center">{revName}</h4>
         </div>
         <Button
-          icon="bi bi-pencil"
+          icon="bi bi-star-fill"
           text
           label={rating}
         />

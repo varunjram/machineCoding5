@@ -378,12 +378,12 @@ const AppReducer = (state, { type, payload }) => {
       };
 
       const _addRating = state?.restaurantsData.map((item, i) => {
-        const { ratings, averageRating } = item;
+        const { ratings } = item;
         return payload?.restId === item?.id
           ? {
               ...item,
               ratings: [...ratings, _newRating],
-              averageRating: FindAverageOf([...ratings, _newRating].map(ele => ele?.rating)),
+              averageRating: FindAverageOf([...ratings, _newRating].map((ele) => ele?.rating)),
             }
           : item;
       });

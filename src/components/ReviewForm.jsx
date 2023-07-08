@@ -1,21 +1,21 @@
-import React, { useState } from "react";
-import { Dropdown } from "primereact/dropdown";
-import { InputTextarea } from "primereact/inputtextarea";
-import { Dialog } from "primereact/dialog";
 import { Button } from "primereact/button";
+import { Dialog } from "primereact/dialog";
+import { Dropdown } from "primereact/dropdown";
+import { Toast } from "primereact/toast";
+import { InputTextarea } from "primereact/inputtextarea";
+import React, { useRef, useState } from "react";
 import { useAppContext } from "../context/AppContext";
-import { ADD_COMMENT, ADD_RATING } from "../reducers/AppReducer";
+import { ADD_RATING } from "../reducers/AppReducer";
 
 const ReviewForm = ({ visible, setVisible, restId }) => {
-  const { cuisineData, restaurantsData, selectedCuisine, dispatch } = useAppContext();
+  const { dispatch } = useAppContext();
   const initialFormData = {
     rating: "",
     comment: "",
   };
+  const tost = useRef();
 
   const [formData, setFormData] = useState(initialFormData);
-
-  const submitHandler = (encrypted) => {};
 
   const handleFormChange = (e) => {
     setFormData((prev) => ({ ...prev, [e.target.id]: e.target.value }));
@@ -25,16 +25,27 @@ const ReviewForm = ({ visible, setVisible, restId }) => {
 
   return (
     <>
+      <Toast ref={tost} />
       <Dialog
         header="Add Review"
         visible={visible}
         className="col-4"
-        // style={{ width: "50vw" }}
         onHide={() => setVisible(false)}
         footer={
           <Button
             label="Submit"
             onClick={() => {
+              const isFormEmpty = formData?.rating && formData?.comment.trim();
+            
+              if (!isFormEmpty) {
+                tost.current.show({
+                  severity: "warn",
+                  summary: "Required",
+                  detail: "Add all fields",
+                  life: 3000,
+                });
+                return;
+              }
               dispatch({
                 type: ADD_RATING,
                 payload: { restId, rating: formData?.rating, comment: formData?.comment },
@@ -44,9 +55,7 @@ const ReviewForm = ({ visible, setVisible, restId }) => {
             }}
           />
         }>
-        <form
-          onSubmit={submitHandler}
-          className="form-grid grid ">
+        <form className="form-grid grid ">
           <div className="col-12 flex justify-content-between align-content-center text-xl ">
             <label htmlFor="rating">Rating :</label>
             <br />
@@ -55,7 +64,6 @@ const ReviewForm = ({ visible, setVisible, restId }) => {
               value={formData?.rating}
               onChange={handleFormChange}
               options={ratingOptions}
-              // optionLabel="name"
               placeholder="Select a Rating"
               className="w-full md:w-14rem"
             />

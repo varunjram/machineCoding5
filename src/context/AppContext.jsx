@@ -6,8 +6,6 @@ const AppContextProvider = ({ children }) => {
 
   const context = { ...state, dispatch };
 
-  useEffect(() => {}, []);
-
   return <AppContext.Provider value={context}>{children}</AppContext.Provider>;
 };
 export const useAppContext = () => useContext(AppContext);
