@@ -18,20 +18,21 @@ const RestaurantDisplayCard = ({ restaurant }) => {
   return (
     <div className="col-10 m-auto ">
       <h1
-        className="text-left"
-        onClick={() => Navigation("")}>
-        Dishes by {restaurantName}{" "}
+        className="text-left cursor-pointer"
+        onClick={() => Navigation(`/restaurant/${id}`)}>
+        Dishes by {restaurantName}
       </h1>
       <section className="grid justify-content-around">
         {menu?.map((item, i) => {
           const { name, imgSrc, price, qty } = item || {};
           return (
             <article
-              className="w-16rem p-0 overflow-hidden border-round-lg   "
+              className="w-16rem p-0 overflow-hidden border-round-lg cursor-pointer   "
               style={{
                 boxShadow:
                   "rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px",
-              }}>
+              }}
+              onClick={() => Navigation(`/restaurant/${id}`)}>
               <div className="h-12rem">
                 <img
                   src={imgSrc}
