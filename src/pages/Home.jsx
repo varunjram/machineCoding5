@@ -27,8 +27,6 @@ export default function Home() {
         })}
       </div>
       {selectedCuisine && <RestaurantDisplayCard restaurant={FindRestaurantByCuisine} />}
-      <pre>{JSON.stringify(selectedCuisine, null, 2)}</pre>
-      <pre>{JSON.stringify(FindRestaurantByCuisine, null, 2)}</pre>
     </div>
   );
 }
