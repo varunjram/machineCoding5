@@ -15,15 +15,17 @@ const CommentCard = ({ review }) => {
             shape="circle"
             className="mr-2"
           />
-          <h4 className="m-0 align-self-center">{revName}</h4>
+          <h4 className="m-0 align-self-center text-lg">{revName}</h4>
         </div>
         <Button
           icon="bi bi-star-fill"
-          text
           label={rating}
+          iconPos="right"
+          outlined
+          className="p-1 align-self-center"
         />
       </div>
-      <p>{comment}</p>
+      <p className="text-lg">{comment}</p>
       <Divider />
     </>
   );
